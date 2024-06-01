@@ -5,14 +5,14 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: RpdZoy$a(>_<)2o14
+      MYSQL_ROOT_PASSWORD: "Your Root Password"
       MYSQL_USER: root
-      MYSQL_PASSWORD: RpdZoy$a(>_<)2o14
+      MYSQL_PASSWORD: "Your Root Password"
       MYSQL_DATABASE: football_premier_league
 
   spring-boot-app:
     build:
-      context: ./english-premier-league-backend
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
@@ -21,11 +21,11 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/football_premier_league
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: RpdZoy$a(>_<)2o14
+      SPRING_DATASOURCE_PASSWORD: "Your Root Password"
 
   react-app:
     build:
-      context: ./english-premier-league-frontend
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "3000:80"

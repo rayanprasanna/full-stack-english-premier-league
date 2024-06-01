@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: RpdZoy$a(>_<)2o14
+      MYSQL_USER: root
+      MYSQL_PASSWORD: RpdZoy$a(>_<)2o14
+      MYSQL_DATABASE: football_premier_league
+
+  spring-boot-app:
+    build:
+      context: ./english-premier-league-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/football_premier_league
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: RpdZoy$a(>_<)2o14
+
+  react-app:
+    build:
+      context: ./english-premier-league-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
